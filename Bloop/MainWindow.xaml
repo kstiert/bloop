@@ -1,0 +1,29 @@
+﻿<Window x:Class="Bloop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Bloop="clr-namespace:Bloop"
+        Title="Bloop"
+        Topmost="True"
+        Loaded="MainWindow_OnLoaded"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        Deactivated="MainWindow_OnDeactivated"
+        WindowStyle="None"
+        WindowStartupLocation="Manual"
+        Drop="MainWindow_OnDrop"
+        AllowDrop="True"
+        ShowInTaskbar="False"
+        Style="{DynamicResource WindowStyle}"
+        Icon="Images\app.png">
+    <Window.Resources>
+        <ResourceDictionary Source="/PresentationFramework.Classic,Version=3.0.0.0,Culture=neutral,PublicKeyToken=31bf3856ad364e35,processorArchitecture=MSIL;component/themes/Classic.xaml"/>
+    </Window.Resources>
+    <Border Style="{DynamicResource WindowBorderStyle}" MouseDown="Border_OnMouseDown">
+        <StackPanel Orientation="Vertical">
+            <TextBox Style="{DynamicResource QueryBoxStyle}" PreviewDragOver="TbQuery_OnPreviewDragOver" AllowDrop="True"
+                     x:Name="tbQuery" PreviewKeyDown="TbQuery_OnPreviewKeyDown" TextChanged="TextBoxBase_OnTextChanged" />
+            <Line Style="{DynamicResource PendingLineStyle}" x:Name="progressBar" Y1="0" Y2="0" X2="100" Height="2" StrokeThickness="1"></Line>
+            <Bloop:ResultPanel x:Name="pnlResult" />
+            <Bloop:ResultPanel x:Name="pnlContextMenu" Visibility="Collapsed" />
+        </StackPanel>
+    </Border>
+</Window>

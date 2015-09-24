@@ -1,0 +1,12 @@
+{
+    "ID":"0308FD86DE0A4DEE8D62B9B535370992",
+    "ActionKeyword":"*",
+    "Name":"URL",
+    "Description":"Open the typed URL from Bloop",
+    "Author":"qianlifeng",
+    "Version":"1.0.0",
+    "Language":"csharp",
+    "Website":"https://github.com/dstiert/Bloop",
+    "ExecuteFileName":"Bloop.Plugin.Url.dll",
+    "IcoPath":"Images\\url.png"
+}
