@@ -256,16 +256,19 @@ namespace Bloop
 
         private double GetWindowsLeft()
         {
+            var source = PresentationSource.FromVisual(this);
             var screen = Screen.FromPoint(System.Windows.Forms.Cursor.Position);
+            var dpi = (source != null && source.CompositionTarget != null ? source.CompositionTarget.TransformFromDevice.M11 : 1);
+            var workingWidth = (int)Math.Floor(screen.WorkingArea.Width * dpi);
             if (UserSettingStorage.Instance.RememberLastLaunchLocation)
             {
                 var origScreen = Screen.FromRectangle(new Rectangle((int)Left, (int)Top, (int)ActualWidth, (int)ActualHeight));
                 var coordX = (Left - origScreen.WorkingArea.Left) / (origScreen.WorkingArea.Width - ActualWidth);
-                UserSettingStorage.Instance.WindowLeft = (screen.WorkingArea.Width - ActualWidth) * coordX + screen.WorkingArea.Left;
+                UserSettingStorage.Instance.WindowLeft = (workingWidth - ActualWidth) * coordX + screen.WorkingArea.Left;
             }
             else
             {
-                UserSettingStorage.Instance.WindowLeft = (screen.WorkingArea.Width - ActualWidth) / 2 + screen.WorkingArea.Left;
+                UserSettingStorage.Instance.WindowLeft = (workingWidth - ActualWidth) / 2 + screen.WorkingArea.Left;
             }
 
             return UserSettingStorage.Instance.WindowLeft;
@@ -273,16 +276,19 @@ namespace Bloop
 
         private double GetWindowsTop()
         {
+            var source = PresentationSource.FromVisual(this);
             var screen = Screen.FromPoint(System.Windows.Forms.Cursor.Position);
+            var dpi = (source != null && source.CompositionTarget != null ? source.CompositionTarget.TransformFromDevice.M11 : 1);
+            var workingHeight = (int)Math.Floor(screen.WorkingArea.Height * dpi);
             if (UserSettingStorage.Instance.RememberLastLaunchLocation)
             {
                 var origScreen = Screen.FromRectangle(new Rectangle((int)Left, (int)Top, (int)ActualWidth, (int)ActualHeight));
                 var coordY = (Top - origScreen.WorkingArea.Top) / (origScreen.WorkingArea.Height - ActualHeight);
-                UserSettingStorage.Instance.WindowTop = (screen.WorkingArea.Height - ActualHeight) * coordY + screen.WorkingArea.Top;
+                UserSettingStorage.Instance.WindowTop = (workingHeight - ActualHeight) * coordY + screen.WorkingArea.Top;
             }
             else
             {
-                UserSettingStorage.Instance.WindowTop = (screen.WorkingArea.Height - tbQuery.ActualHeight) / 4 + screen.WorkingArea.Top;
+                UserSettingStorage.Instance.WindowTop = (workingHeight - tbQuery.ActualHeight) / 4 + screen.WorkingArea.Top;
             }
             return UserSettingStorage.Instance.WindowTop;
         }
