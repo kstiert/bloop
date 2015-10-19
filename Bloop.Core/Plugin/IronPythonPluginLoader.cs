@@ -17,9 +17,12 @@ namespace Bloop.Core.Plugin
             {
                 var py = Python.CreateRuntime();
                 var scope = py.UseFile(metadata.ExecuteFilePath);
-                var iplugin = scope.GetVariable("IPlugin");
-                dynamic plugin = scope.GetItems().Select(i => (i.Value as PythonType)).FirstOrDefault(i => i != null && i.__subclasscheck__(iplugin));
-                plugins.Add(new PluginPair { Metadata = metadata, Plugin = plugin });
+                var iplugin = scope.GetVariable<PythonType>("IPlugin");
+                var pyplugin = scope.GetItems().Where(kv => kv.Key != "IPlugin").Select(kv => kv.Value).FirstOrDefault(v => v is PythonType && iplugin.__subclasscheck__(v));
+                if (pyplugin != null)
+                {
+                    plugins.Add( new PluginPair { Plugin = (IPlugin)scope.Engine.Operations.CreateInstance(pyplugin), Metadata = metadata });
+                }
             }
             return plugins;
         }
