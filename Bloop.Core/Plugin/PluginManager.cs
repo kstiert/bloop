@@ -79,6 +79,7 @@ namespace Bloop.Core.Plugin
 
             pluginMetadatas = PluginConfig.Parse(pluginDirectories);
             plugins.AddRange(new CSharpPluginLoader().LoadPlugin(pluginMetadatas));
+            plugins.AddRange(new IronPythonPluginLoader().LoadPlugin(pluginMetadatas));
 
             //load plugin i18n languages
             ResourceMerger.ApplyPluginLanguages();
