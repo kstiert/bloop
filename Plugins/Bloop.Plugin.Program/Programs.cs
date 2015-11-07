@@ -36,7 +36,7 @@ namespace Bloop.Plugin.Program
             return returnList.Select(c => new Result()
             {
                 Title = c.Title,
-                SubTitle = c.ExecutePath,
+                SubTitle = c.Description ?? c.ExecutePath,
                 IcoPath = c.IcoPath,
                 Score = c.Score,
                 ContextData = c,
