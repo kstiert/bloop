@@ -23,6 +23,7 @@ namespace Bloop.Plugin.Program
                 if (AbbrTitle.Length < 2) AbbrTitle = null;
             }
         }
+        public string Description { get; set; }
         public string PinyinTitle { get; private set; }
         public string AbbrTitle { get; private set; }
         public string IcoPath { get; set; }

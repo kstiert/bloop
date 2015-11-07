@@ -21,6 +21,7 @@ namespace Bloop.Plugin.Program
             {"CommonStartMenuProgramSource", typeof(CommonStartMenuProgramSource)},
             {"UserStartMenuProgramSource", typeof(UserStartMenuProgramSource)},
             {"AppPathsProgramSource", typeof(AppPathsProgramSource)},
+            {"WindowsAppSource", typeof(WindowsAppSource)},
         };
         private PluginInitContext context;
 
@@ -35,7 +36,7 @@ namespace Bloop.Plugin.Program
             return returnList.Select(c => new Result()
             {
                 Title = c.Title,
-                SubTitle = c.ExecutePath,
+                SubTitle = c.Description ?? c.ExecutePath,
                 IcoPath = c.IcoPath,
                 Score = c.Score,
                 ContextData = c,
@@ -158,6 +159,12 @@ namespace Bloop.Plugin.Program
                 BonusPoints = -10,
                 Enabled = ProgramStorage.Instance.EnableRegistrySource,
                 Type = "AppPathsProgramSource"
+            });
+            list.Add(new ProgramSource()
+            {
+                BonusPoints = 0,
+                Enabled = true,
+                Type = "WindowsAppSource"
             });
             return list;
         }

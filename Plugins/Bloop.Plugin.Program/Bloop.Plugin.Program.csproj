@@ -70,6 +70,7 @@
     <Compile Include="ProgramSources\CommonStartMenuProgramSource.cs" />
     <Compile Include="ProgramSources\FileSystemProgramSource.cs" />
     <Compile Include="ProgramSources\UserStartMenuProgramSource.cs" />
+    <Compile Include="ProgramSources\WindowsAppSource.cs" />
     <Compile Include="ProgramStorage.cs" />
     <Compile Include="ProgramSuffixes.xaml.cs">
       <DependentUpon>ProgramSuffixes.xaml</DependentUpon>
