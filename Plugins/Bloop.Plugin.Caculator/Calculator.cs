@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Windows;
+using System.Windows.Forms;
 using YAMP;
 
 namespace Bloop.Plugin.Caculator
@@ -18,14 +18,14 @@ namespace Bloop.Plugin.Caculator
                         @"[ei]|[0-9]|[\+\-\*\/\^\., ""]|[\(\)\|\!\[\]]" +
                         @")+$", RegexOptions.Compiled);
         private static Regex regBrackets = new Regex(@"[\(\)\[\]]", RegexOptions.Compiled);
-        private static ParseContext yampContext = null;
+        private static Parser yampParser = null;
         private PluginInitContext context { get; set; }
 
         static Calculator()
         {
-            yampContext = Parser.PrimaryContext;
-            Parser.InteractiveMode = false;
-            Parser.UseScripting = false;
+            var parser = new Parser();
+            parser.InteractiveMode = false;
+            parser.UseScripting = false;
         }
 
         public List<Result> Query(Query query)
@@ -36,11 +36,12 @@ namespace Bloop.Plugin.Caculator
 
             try
             {
-                var result = yampContext.Run(query.Search);
-                if (result.Output != null && !string.IsNullOrEmpty(result.Result))
+                var context = yampParser.Parse(query.Search);
+                context.Run();
+                if (context.Output != null && !string.IsNullOrEmpty(context.Result))
                 {
                     return new List<Result>() { new Result() { 
-                        Title = result.Result, 
+                        Title = context.Result, 
                         IcoPath = "Images/calculator.png", 
                         Score = 300,
                         SubTitle = "Copy this number to the clipboard", 
@@ -48,7 +49,7 @@ namespace Bloop.Plugin.Caculator
                         {
                             try
                             {
-                                Clipboard.SetText(result.Result);
+                                Clipboard.SetText(context.Result);
                                 return true;
                             }
                             catch (System.Runtime.InteropServices.ExternalException)
