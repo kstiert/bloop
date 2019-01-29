@@ -1,8 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
+    <OutputPath>..\..\Output\$(Configuration)\$(TargetFramework)\Plugins\$(MSBuildProjectName)</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Bloop.Core\Bloop.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Languages\*.xaml" SubType="Designer" Generator="MSBuild:Compile" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Images\*.*" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="plugin.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
