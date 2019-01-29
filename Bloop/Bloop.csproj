@@ -18,13 +18,63 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="**\*.xaml" SubType="Designer" Generator="MSBuild:Compile" />
+    <Page Include="*.xaml" SubType="Designer" Generator="MSBuild:Compile" /> 
+    <Content Include="Themes\*.xaml" SubType="Designer" Generator="MSBuild:Compile" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Languages\*.xaml" SubType="Designer" Generator="MSBuild:Compile" CopyToOutputDirectory="PreserveNewest" />
     <Page Remove="Themes\ThemeBuilder\Template.xaml" />
-    <None Remove="**\*.xaml" />
     <Compile Update="**\*.xaml.cs" SubType="Designer" DependentUpon="%(Filename)" />
-    <Resource Include="Images\*.*" />
+    <Resource Include="Images\*.*" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NHotkey.Wpf" Version="1.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Languages\en.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Languages\zh-cn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Languages\zh-tw.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Themes\Base.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Themes\Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Themes\Gray.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Themes\Light.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Themes\Metro Server.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Themes\Pink.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>
