@@ -122,3 +122,5 @@ Wox/Wox.csproj
 
 *.sublime-*
 *.dgml
+
+nupkg
