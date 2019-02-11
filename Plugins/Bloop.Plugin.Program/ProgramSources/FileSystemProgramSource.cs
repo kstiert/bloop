@@ -11,20 +11,22 @@ namespace Bloop.Plugin.Program.ProgramSources
     {
         private string baseDirectory;
         private int maxDepth;
+        private bool useGlobalSuffixes;
         private string suffixes;
 
-        public FileSystemProgramSource(string baseDirectory, int maxDepth, string suffixes)
+        public FileSystemProgramSource(string baseDirectory, int maxDepth, bool useGlobalSuffixes, string suffixes)
         {
             this.baseDirectory = baseDirectory;
             this.maxDepth = maxDepth;
+            this.useGlobalSuffixes = useGlobalSuffixes;
             this.suffixes = suffixes;
         }
 
         public FileSystemProgramSource(string baseDirectory)
-            : this(baseDirectory, -1, "") {}
+            : this(baseDirectory, -1, true, "") {}
 
         public FileSystemProgramSource(ProgramSource source)
-            : this(source.Location, source.MaxDepth, source.Suffixes)
+            : this(source.Location, source.MaxDepth, source.UseGlobalSuffixes, source.Suffixes)
         {
             this.BonusPoints = source.BonusPoints;
         }
@@ -55,7 +57,7 @@ namespace Bloop.Plugin.Program.ProgramSources
             {
                 foreach (string file in Directory.GetFiles(path))
                 {
-                    if (ProgramStorage.Instance.ProgramSuffixes.Split(';').Any(o => file.EndsWith("." + o)) ||
+                    if ((useGlobalSuffixes && ProgramStorage.Instance.ProgramSuffixes.Split(';').Any(o => file.EndsWith("." + o))) ||
                         suffixes.Split(';').Any(o => file.EndsWith("." + o)))
                     {
                         Program p = CreateEntry(file);

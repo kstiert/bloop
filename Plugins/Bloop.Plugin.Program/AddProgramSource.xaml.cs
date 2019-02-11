@@ -19,14 +19,14 @@ namespace Bloop.Plugin.Program
             this._editing = edit;
             this.Directory.Text = this._editing.Location;
             this.MaxDepth.Text = this._editing.MaxDepth.ToString();
+            this.GlobalSuffxies.IsChecked = this._editing.UseGlobalSuffixes;
             this.Suffixes.Text = this._editing.Suffixes;
         }
 
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+            if (dialog.ShowDialog() ?? false)
             {
                 this.Directory.Text = dialog.SelectedPath;
             }
@@ -46,6 +46,7 @@ namespace Bloop.Plugin.Program
                 {
                     Location = this.Directory.Text,
                     MaxDepth = max,
+                    UseGlobalSuffixes = this.GlobalSuffxies.IsChecked ?? false,
                     Suffixes = this.Suffixes.Text,
                     Type = "FileSystemProgramSource",
                     Enabled = true
@@ -55,6 +56,7 @@ namespace Bloop.Plugin.Program
             {
                 this._editing.Location = this.Directory.Text;
                 this._editing.MaxDepth = max;
+                this._editing.UseGlobalSuffixes = this.GlobalSuffxies.IsChecked ?? false;
                 this._editing.Suffixes = this.Suffixes.Text;
             }
 

@@ -32,6 +32,13 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn Header="Use Global Suffixes"  Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding UseGlobalSuffixes}" IsEnabled="False" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="{DynamicResource Bloop_plugin_program_suffixes_header}"  Width="220">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

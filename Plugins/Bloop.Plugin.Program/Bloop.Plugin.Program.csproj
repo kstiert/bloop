@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Ookii.Dialogs" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="*.xaml" SubType="Designer" Generator="MSBuild:Compile" />

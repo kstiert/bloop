@@ -22,6 +22,10 @@
             <Label Content="{DynamicResource Bloop_plugin_program_max_search_depth}" />
             <TextBox Name="MaxDepth" Text="-1" VerticalAlignment="Center" Width="146" Margin="0,7" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Use Global Suffixes" />
+            <CheckBox Name="GlobalSuffxies" />
+        </StackPanel>
         <Button VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Height="20" Width="70"  Click="ButtonAdd_OnClick"  Content="{DynamicResource Bloop_plugin_program_update}"   />
     </StackPanel>
 </Window>
