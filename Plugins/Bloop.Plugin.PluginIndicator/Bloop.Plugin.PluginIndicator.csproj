@@ -10,6 +10,10 @@
   <ItemGroup>
     <Content Include="Languages\*.xaml" SubType="Designer" Generator="MSBuild:Compile" CopyToOutputDirectory="PreserveNewest" />
     <None Include="Images\*.*" CopyToOutputDirectory="PreserveNewest" />
+    <PackageReference Include="GitVersionTask" Version="4.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <None Update="plugin.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
