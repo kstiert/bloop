@@ -1,4 +1,4 @@
-#tool "nuget:?package=GitVersion.CommandLine"
+#tool "nuget:?package=GitVersion.CommandLine&version=4.0.0"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -52,12 +52,20 @@ Task("Build")
     });
 });
 
+Task("Package")
+    .IsDependentOn("Build")
+    .Does(() =>
+{
+    Zip($"Output/{configuration}/net472", "Output/Bloop.zip");
+});
+
+
 //////////////////////////////////////////////////////////////////////
 // TASK TARGETS
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Build");
+    .IsDependentOn("Package");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
