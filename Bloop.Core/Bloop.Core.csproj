@@ -3,6 +3,10 @@
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="4.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="ICSharpCode.SharpZipLib.Patched" Version="0.86.5.1" />
     <PackageReference Include="IronPython" Version="2.7.9" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />

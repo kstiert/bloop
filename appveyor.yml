@@ -1,0 +1,16 @@
+image: Visual Studio 2017
+skip_branch_with_pr: true
+
+build_script:
+  - cmd: PowerShell -Version 2.0 .\build.ps1 -Configuration Release
+
+artifacts:
+  - path: 'nupkg\*'
+  - path: 'Output\Bloop.zip'
+
+deploy:
+  - provider: Environment
+    name: GitHub
+    artifact: /.*\.zip/
+    on:
+      APPVEYOR_REPO_TAG: true
