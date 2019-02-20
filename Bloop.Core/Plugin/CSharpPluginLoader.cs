@@ -6,6 +6,7 @@ using Bloop.Infrastructure.Logger;
 using Bloop.Plugin;
 using System.IO;
 using System.Xml;
+using System.Diagnostics;
 
 namespace Bloop.Core.Plugin
 {
@@ -35,6 +36,12 @@ namespace Bloop.Core.Plugin
                     }
 
                     Assembly asm = Assembly.Load(AssemblyName.GetAssemblyName(metadata.ExecuteFilePath));
+
+                    if(string.IsNullOrEmpty(metadata.Version))
+                    {
+                        metadata.Version = FileVersionInfo.GetVersionInfo(metadata.ExecuteFilePath).ProductVersion;
+                    }
+
                     List<Type> types = asm.GetTypes().Where(o => o.IsClass && !o.IsAbstract &&  o.GetInterfaces().Contains(typeof(IPlugin))).ToList();
                     if (types.Count == 0)
                     {

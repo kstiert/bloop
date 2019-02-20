@@ -4,7 +4,6 @@
     "Name":"Web Searches",
     "Description":"Provide the web search ability",
     "Author":"qianlifeng",
-    "Version":"1.0.0",
     "Language":"csharp",
     "Website":"https://github.com/dstiert/Bloop",
     "ExecuteFileName":"Bloop.Plugin.WebSearch.dll",

@@ -4,7 +4,6 @@
     "Name":"Control Panel",
     "Description":"Search within the Control Panel.",
     "Author":"CoenraadS",
-    "Version":"1.0.0",
     "Language":"csharp",
     "Website":"https://github.com/dstiert/Bloop",
     "ExecuteFileName":"Bloop.Plugin.ControlPanel.dll",

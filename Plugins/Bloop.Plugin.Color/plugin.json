@@ -4,7 +4,6 @@
     "Name":"Colors",
     "Description":"Provide hex color preview.(Try #000 in Bloop)",
     "Author":"qianlifeng",
-    "Version":"1.0.0",
     "Language":"csharp",
     "Website":"https://github.com/dstiert/Bloop",
     "ExecuteFileName":"Bloop.Plugin.Color.dll",
