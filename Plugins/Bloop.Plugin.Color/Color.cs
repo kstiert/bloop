@@ -106,8 +106,7 @@ namespace Bloop.Plugin.Color
 
         public void Init(PluginInitContext context)
         {
-            throw new Exception("boop");
-            // this.context = context;
+            this.context = context;
         }
 
 

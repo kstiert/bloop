@@ -18,14 +18,14 @@ namespace Bloop.Plugin.Caculator
                         @"[ei]|[0-9]|[\+\-\*\/\^\., ""]|[\(\)\|\!\[\]]" +
                         @")+$", RegexOptions.Compiled);
         private static Regex regBrackets = new Regex(@"[\(\)\[\]]", RegexOptions.Compiled);
-        private static Parser yampParser = null;
+        private static Parser _parser = null;
         private PluginInitContext context { get; set; }
 
         static Calculator()
         {
-            var parser = new Parser();
-            parser.InteractiveMode = false;
-            parser.UseScripting = false;
+            _parser = new Parser();
+            _parser.InteractiveMode = false;
+            _parser.UseScripting = false;
         }
 
         public List<Result> Query(Query query)
@@ -36,7 +36,7 @@ namespace Bloop.Plugin.Caculator
 
             try
             {
-                var context = yampParser.Parse(query.Search);
+                var context = _parser.Parse(query.Search);
                 context.Run();
                 if (context.Output != null && !string.IsNullOrEmpty(context.Result))
                 {
