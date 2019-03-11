@@ -260,15 +260,16 @@ namespace Bloop
             var screen = Screen.FromPoint(System.Windows.Forms.Cursor.Position);
             var dpi = (source != null && source.CompositionTarget != null ? source.CompositionTarget.TransformFromDevice.M11 : 1);
             var workingWidth = (int)Math.Floor(screen.WorkingArea.Width * dpi);
+            var workingLeft = (int)Math.Floor(screen.WorkingArea.Left * dpi);
             if (UserSettingStorage.Instance.RememberLastLaunchLocation)
             {
                 var origScreen = Screen.FromRectangle(new Rectangle((int)Left, (int)Top, (int)ActualWidth, (int)ActualHeight));
                 var coordX = (Left - origScreen.WorkingArea.Left) / (origScreen.WorkingArea.Width - ActualWidth);
-                UserSettingStorage.Instance.WindowLeft = (workingWidth - ActualWidth) * coordX + screen.WorkingArea.Left;
+                UserSettingStorage.Instance.WindowLeft = (workingWidth - ActualWidth) * coordX + workingLeft;
             }
             else
             {
-                UserSettingStorage.Instance.WindowLeft = (workingWidth - ActualWidth) / 2 + screen.WorkingArea.Left;
+                UserSettingStorage.Instance.WindowLeft = (workingWidth - ActualWidth) / 2 + workingLeft;
             }
 
             return UserSettingStorage.Instance.WindowLeft;
@@ -280,15 +281,16 @@ namespace Bloop
             var screen = Screen.FromPoint(System.Windows.Forms.Cursor.Position);
             var dpi = (source != null && source.CompositionTarget != null ? source.CompositionTarget.TransformFromDevice.M11 : 1);
             var workingHeight = (int)Math.Floor(screen.WorkingArea.Height * dpi);
+            var workingTop = (int)Math.Floor(screen.WorkingArea.Top * dpi);
             if (UserSettingStorage.Instance.RememberLastLaunchLocation)
             {
                 var origScreen = Screen.FromRectangle(new Rectangle((int)Left, (int)Top, (int)ActualWidth, (int)ActualHeight));
                 var coordY = (Top - origScreen.WorkingArea.Top) / (origScreen.WorkingArea.Height - ActualHeight);
-                UserSettingStorage.Instance.WindowTop = (workingHeight - ActualHeight) * coordY + screen.WorkingArea.Top;
+                UserSettingStorage.Instance.WindowTop = (workingHeight - ActualHeight) * coordY + workingTop;
             }
             else
             {
-                UserSettingStorage.Instance.WindowTop = (workingHeight - tbQuery.ActualHeight) / 4 + screen.WorkingArea.Top;
+                UserSettingStorage.Instance.WindowTop = (workingHeight - tbQuery.ActualHeight) / 4 + workingTop;
             }
             return UserSettingStorage.Instance.WindowTop;
         }
