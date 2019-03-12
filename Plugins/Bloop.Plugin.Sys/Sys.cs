@@ -130,7 +130,7 @@ namespace Bloop.Plugin.Sys
 				},
 				new Result
 				{
-				    Title = "Settings",
+				    Title = "Bloop Settings",
                     SubTitle = context.API.GetTranslation("Bloop_plugin_sys_setting"),
 				    Score = 100,
 				    IcoPath = "Images\\app.png",
